@@ -1,4 +1,4 @@
-package com.bltapp.generated;
+package com.pablo.bltapp.generated;
 
 import java.util.Arrays;
 import java.util.List;
