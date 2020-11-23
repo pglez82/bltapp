@@ -1,21 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import * as Location from 'expo-location';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {text:"Waiting for position..."}
+  }
+
+  async componentDidMount(){
+    let { status } = await Location.requestPermissionsAsync();
+    if (status !== 'granted') {
+      this.setState({text:'Permission to access location was denied'});
+    }
+    let location = await Location.getCurrentPositionAsync({accuracy:Location.Accuracy.High})
+    this.setState({text:"Here is your position:"});
+    this.setState({latitude:location['coords']['latitude']});
+    this.setState({longitude:location['coords']['longitude']});
+  }
+
+  render(){
+    return(
+      <View>
+        <Text>{this.state.text}</Text>
+        <View>
+          <Text>Latitude: {this.state.latitude}</Text>
+          <Text>Longitude: {this.state.longitude}</Text>
+        </View>
+      </View>
+    )
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
