@@ -1,0 +1,12 @@
+{
+  "name": "bltapp",
+  "displayName": "bltapp",
+  "expo": {
+    "name": "bltapp",
+    "slug": "bltapp",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
