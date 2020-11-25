@@ -49,4 +49,13 @@ We will chose the second as the (https://polidea.github.io/react-native-ble-plx/
 npm install react-native-ble-plx --save
 npx react-native link react-native-ble-plx
 ```
+The relevant code here is this call:
+```javascript
+let ScanOptions = { scanMode: ScanMode.LowLatency }
+this.manager.startDeviceScan(null, ScanOptions, (error, device) => {
+  ...
+}
+```
+that will be making the callback each time a device is found nearby.
+
 
